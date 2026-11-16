@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Manajemen Inventori - Wallpaper Malang id</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ================= LAYAR UTAMA DASHBOARD ADMIN ================= -->
+    <div id="dashboard-container" class="dashboard-frame active">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-placeholder">
+                    <h2>wallpaper malang</h2>
+                    <span class="logo-badge">id</span>
+                </div>
+                <span>Interior & Wallpaper Stock</span>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-item active" data-target="overview">Ringkasan Utama</div>
+                <div class="nav-item" data-target="catalog">Katalog Produk</div>
+                <div class="nav-item" data-target="mutation">Formulir Mutasi</div>
+                <div class="nav-item" data-target="history">Jurnal Log Aktivitas</div>
+                <a class="nav-item" href="product-registration.html">Registrasi Produk</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="btn-admin-logout" class="btn-logout-trigger">🔒 Keluar Sistem</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <section id="overview-section" class="content-section active">
+                <header class="content-header">
+                    <h1>Ringkasan Status Inventori</h1>
+                    <span class="session-user-badge">Sesi Admin Aktif</span>
+                </header>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Persediaan Fisik</h3>
+                        <p id="stat-total-stock">0</p>
+                        <small>Roll / Lembar</small>
+                    </div>
+                    <div class="stat-card alert">
+                        <h3>Item Batas Kritis (&lt; 5)</h3>
+                        <p id="stat-critical-stock">0</p>
+                        <small>Butuh Restock Segera</small>
+                    </div>
+                    <div class="stat-card premium">
+                        <h3>Estimasi Nilai Aset</h3>
+                        <p id="stat-asset-value">Rp 0</p>
+                        <small>Kalkulasi Finansial Gudang</small>
+                    </div>
+                </div>
+                <div class="table-container shadow-sm">
+                    <h3>⚠️ Daftar Peringatan Stok Menipis</h3>
+                    <table id="critical-table">
+                        <thead>
+                            <tr>
+                                <th>Kode SKU</th>
+                                <th>Nama Produk Wallpaper</th>
+                                <th>Sisa Stok</th>
+                                <th>Status Urgensi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="catalog-section" class="content-section">
+                <header class="content-header">
+                    <h1>Katalog Komoditas Produk</h1>
+                    <a class="btn btn-primary" href="product-registration.html">➕ Registrasi Item Baru</a>
+                </header>
+                <div class="table-container shadow-sm">
+                    <table id="products-table">
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Spesifikasi Bahan</th>
+                                <th>Lokasi Rak</th>
+                                <th>Stok Fisik</th>
+                                <th>Harga Satuan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-list-body"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="mutation-section" class="content-section">
+                <header class="content-header">
+                    <h1>Input Arus Mutasi Barang</h1>
+                </header>
+                <div class="card shadow-sm form-max-width">
+                    <h3>Formulir Keluar Masuk Barang</h3>
+                    <form id="mutation-form" style="margin-top: 15px;">
+                        <div class="form-group">
+                            <label for="mutate-sku">Pilih Produk (SKU)</label>
+                            <select id="mutate-sku" required></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mutate-type">Jenis Perubahan</label>
+                            <select id="mutate-type" required>
+                                <option value="in">📦 Barang Masuk (Restock / Kiriman Vendor)</option>
+                                <option value="out">🚚 Barang Keluar (Penjualan / Pemasangan Proyek)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mutate-qty">Kuantitas (Qty)</label>
+                            <input type="number" id="mutate-qty" min="1" placeholder="Masukkan jumlah barang" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Eksekusi & Update Stok</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="history-section" class="content-section">
+                <header class="content-header">
+                    <h1>Jurnal Kronologi Aktivitas</h1>
+                </header>
+                <div class="table-container shadow-sm">
+                    <h3>📋 Rekam Jejak Arus Barang</h3>
+                    <table id="logs-table">
+                        <thead>
+                            <tr>
+                                <th>Waktu Transaksi</th>
+                                <th>Kode SKU</th>
+                                <th>Nama Varian Produk</th>
+                                <th>Aktivitas</th>
+                                <th>Jumlah</th>
+                                <th>Sisa Akhir</th>
+                            </tr>
+                        </thead>
+                        <tbody id="log-list-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

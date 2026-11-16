@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi Produk - Wallpaper Malang id</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="registration-page">
+        <header class="content-header">
+            <h1>Registrasi Produk Baru</h1>
+            <a class="btn btn-secondary" href="index.html">Kembali ke Dashboard</a>
+        </header>
+        <section class="card shadow-sm form-max-width" aria-labelledby="registration-title">
+            <h2 id="registration-title">Mendaftarkan Jenis Barang Baru</h2>
+            <form id="product-form" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label for="prod-sku">Kode SKU</label>
+                    <input type="text" id="prod-sku" placeholder="Contoh: WPM-CLASSIC-01" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-name">Nama Produk Varian</label>
+                    <input type="text" id="prod-name" placeholder="Contoh: Wallpaper Premium Damask Gold" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-category">Kategori Komoditas</label>
+                    <input type="text" id="prod-category" placeholder="Contoh: Wallpaper, Vinyl, Foam" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-material">Spesifikasi Material</label>
+                    <input type="text" id="prod-material" placeholder="Contoh: Vinyl Bertekstur 0.5m x 10m" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-rack">Lokasi Titik Rak</label>
+                    <input type="text" id="prod-rack" placeholder="Contoh: Rak Blok A-03" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-stock">Kuantitas Stok Awal</label>
+                    <input type="number" id="prod-stock" min="0" placeholder="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="prod-price">Harga Eceran (Rp)</label>
+                    <input type="number" id="prod-price" min="0" placeholder="Contoh: 150000" required>
+                </div>
+                <div class="modal-actions">
+                    <a class="btn btn-secondary" href="index.html">Batalkan</a>
+                    <button type="submit" class="btn btn-primary">Simpan ke Katalog</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
