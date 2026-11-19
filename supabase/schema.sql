@@ -1,4 +1,5 @@
 -- Jalankan di Supabase: SQL Editor -> New query -> paste -> Run
+-- Aman dijalankan ulang (tidak membuat data atau aturan ganda).
 
 -- 1. TABEL
 create table if not exists public.products (
@@ -26,6 +27,12 @@ create table if not exists public.mutation_logs (
 alter table public.products      enable row level security;
 alter table public.mutation_logs enable row level security;
 
+drop policy if exists "admin baca produk"   on public.products;
+drop policy if exists "admin tambah produk" on public.products;
+drop policy if exists "admin ubah produk"   on public.products;
+drop policy if exists "admin baca log"      on public.mutation_logs;
+drop policy if exists "admin tambah log"    on public.mutation_logs;
+
 create policy "admin baca produk"   on public.products      for select to authenticated using (true);
 create policy "admin tambah produk" on public.products      for insert to authenticated with check (true);
 create policy "admin ubah produk"   on public.products      for update to authenticated using (true) with check (true);
@@ -36,6 +43,7 @@ create policy "admin tambah log"    on public.mutation_logs for insert to authen
 create or replace function public.mutate_stock(p_sku text, p_type text, p_qty integer)
 returns integer
 language plpgsql
+set search_path = public
 as $$
 declare
   v_product public.products%rowtype;
@@ -67,7 +75,7 @@ $$;
 revoke execute on function public.mutate_stock(text, text, integer) from public, anon;
 grant  execute on function public.mutate_stock(text, text, integer) to authenticated;
 
--- 4. DATA AWAL (sama seperti data contoh di app.js lama)
+-- 4. DATA AWAL (sama seperti data contoh di versi localStorage)
 insert into public.products (sku, name, category, material, rack, stock, price) values
  ('WPM-PREM-001','Wallpaper Premium Damask Gold','Wallpaper','Vinyl Bertekstur 0.5m x 10m','Gudang Utama - A1',18,185000),
  ('WPM-CLSC-002','Wallpaper Classic Floral Silver','Wallpaper','Vinyl Bertekstur 0.5m x 10m','Gudang Utama - A3',3,175000),
@@ -75,5 +83,7 @@ insert into public.products (sku, name, category, material, rack, stock, price) 
  ('WPM-VNYL-004','Lantai Vinyl Wood Grain Natural','Vinyl','Plank 3mm Premium','Gudang B - C2',2,145000)
 on conflict (sku) do nothing;
 
+-- Log awal hanya dibuat jika tabel log masih kosong
 insert into public.mutation_logs (sku, name, type, qty, current_stock)
-select sku, name, 'Registrasi Baru', stock, stock from public.products;
+select sku, name, 'Registrasi Baru', stock, stock from public.products
+where not exists (select 1 from public.mutation_logs);
