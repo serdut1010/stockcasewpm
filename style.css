@@ -1,3 +1,4 @@
+
 :root {
     --bg-primary: #f5f3ff;
     --sidebar-color: #4c1d95;
@@ -33,9 +34,7 @@ body {
     padding: 20px;
 }
 
-.login-frame.active {
-    display: flex;
-}
+.login-frame.active { display: flex; }
 
 .login-card {
     background: var(--white);
@@ -45,10 +44,7 @@ body {
     border-radius: 16px;
 }
 
-.login-header {
-    text-align: center;
-    margin-bottom: 25px;
-}
+.login-header { text-align: center; margin-bottom: 25px; }
 
 .brand-logo {
     display: flex;
@@ -78,10 +74,7 @@ body {
     justify-content: center;
 }
 
-.login-header p {
-    color: #6b7280;
-    font-size: 0.9rem;
-}
+.login-header p { color: #6b7280; font-size: 0.9rem; }
 
 .btn-login-submit {
     background-color: var(--sidebar-color);
@@ -96,9 +89,7 @@ body {
     font-weight: 600;
 }
 
-.btn-login-submit:hover {
-    background-color: var(--sidebar-hover);
-}
+.btn-login-submit:hover { background-color: var(--sidebar-hover); }
 
 .auth-error-alert {
     background-color: #fee2e2;
@@ -111,20 +102,10 @@ body {
     text-align: center;
 }
 
-.login-footer {
-    text-align: center;
-    margin-top: 25px;
-    color: #9ca3af;
-}
+.login-footer { text-align: center; margin-top: 25px; color: #9ca3af; }
 
-.dashboard-frame {
-    display: none;
-    min-height: 100vh;
-}
-
-.dashboard-frame.active {
-    display: flex;
-}
+.dashboard-frame { display: none; min-height: 100vh; }
+.dashboard-frame.active { display: flex; }
 
 .sidebar {
     width: 280px;
@@ -148,11 +129,7 @@ body {
     margin-bottom: 5px;
 }
 
-.logo-placeholder h2 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-transform: lowercase;
-}
+.logo-placeholder h2 { font-size: 1.3rem; font-weight: 700; text-transform: lowercase; }
 
 .logo-badge {
     background-color: var(--white);
@@ -166,17 +143,9 @@ body {
     justify-content: center;
 }
 
-.logo-area span {
-    font-size: 0.75rem;
-    color: #c084fc;
-}
+.logo-area span { font-size: 0.75rem; color: #c084fc; }
 
-.nav-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-}
+.nav-menu { display: flex; flex-direction: column; gap: 8px; flex: 1; }
 
 .nav-item {
     color: #ddd6fe;
@@ -205,34 +174,15 @@ body {
     transition: all 0.2s;
 }
 
-.btn-logout-trigger:hover {
-    background-color: var(--danger-color);
-    color: var(--white);
-}
+.btn-logout-trigger:hover { background-color: var(--danger-color); color: var(--white); }
 
-.main-content {
-    flex: 1;
-    padding: 30px;
-    overflow-y: auto;
-}
+.main-content { flex: 1; padding: 30px; overflow-y: auto; min-width: 0; }
 
-.registration-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-}
+.registration-page { max-width: 900px; margin: 0 auto; padding: 30px; }
+.registration-page .form-max-width { max-width: none; }
 
-.registration-page .form-max-width {
-    max-width: none;
-}
-
-.content-section {
-    display: none;
-}
-
-.content-section.active {
-    display: block;
-}
+.content-section { display: none; }
+.content-section.active { display: block; }
 
 .content-header {
     display: flex;
@@ -241,10 +191,7 @@ body {
     margin-bottom: 30px;
 }
 
-.content-header h1 {
-    font-size: 1.6rem;
-    color: var(--sidebar-color);
-}
+.content-header h1 { font-size: 1.6rem; color: var(--sidebar-color); }
 
 .session-user-badge {
     background-color: #e0e7ff;
@@ -280,44 +227,25 @@ body {
     text-transform: uppercase;
 }
 
-.stat-card p {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-.stat-card small {
-    color: #9ca3af;
-    font-size: 0.8rem;
-}
+.stat-card p { font-size: 1.8rem; font-weight: bold; }
+.stat-card small { color: #9ca3af; font-size: 0.8rem; }
 
 .table-container {
     background: var(--white);
     padding: 22px;
     border-radius: 12px;
     margin-bottom: 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.table-container h3 {
-    color: var(--sidebar-color);
-}
+.table-container h3 { color: var(--sidebar-color); }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    margin-top: 15px;
-}
+table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
 
-th, td {
-    padding: 12px 15px;
-    border-bottom: 1px solid var(--border-color);
-}
+th, td { padding: 12px 15px; border-bottom: 1px solid var(--border-color); }
 
-th {
-    background-color: #f9fafb;
-    color: #4b5563;
-    font-weight: 600;
-}
+th { background-color: #f9fafb; color: #4b5563; font-weight: 600; }
 
 .btn {
     padding: 10px 20px;
@@ -336,19 +264,9 @@ th {
 .btn-success:hover { background: #059669; }
 .btn-secondary { background: #9ca3af; color: var(--white); }
 
-.card {
-    background: var(--white);
-    padding: 25px;
-    border-radius: 12px;
-}
-
-.form-max-width {
-    max-width: 550px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
+.card { background: var(--white); padding: 25px; border-radius: 12px; }
+.form-max-width { max-width: 550px; }
+.form-group { margin-bottom: 15px; }
 
 .form-group label {
     display: block;
@@ -386,11 +304,39 @@ th {
 .shadow-sm { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
 .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
 .hidden { display: none !important; }
-.badge-danger { background: #fee2e2; color: var(--danger-color); padding: 4px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; }
 
-/* ================= RESPONSIF HP & TABLET ================= */
-.main-content { min-width: 0; }
-.table-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.badge-danger {
+    background: #fee2e2;
+    color: var(--danger-color);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* REKAP DAN EKSPOR LOG MINGGUAN */
+.weekly-export-card { margin-bottom: 24px; }
+.weekly-help { color: #6b7280; font-size: .9rem; margin-top: 8px; }
+
+.weekly-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.weekly-controls .form-group { margin-bottom: 0; min-width: 230px; }
+.weekly-controls .btn { min-height: 42px; }
+
+.weekly-summary {
+    margin-top: 16px;
+    padding: 14px;
+    background: #f5f3ff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    line-height: 1.8;
+}
 
 @media (max-width: 768px) {
     .dashboard-frame.active { flex-direction: column; }
@@ -399,47 +345,28 @@ th {
     .nav-menu { flex-direction: row; overflow-x: auto; gap: 6px; flex: none; padding-bottom: 4px; }
     .nav-item { white-space: nowrap; min-height: 44px; display: flex; align-items: center; }
     .sidebar-footer { margin-top: 10px; }
-
-    .main-content { padding: 16px; }
-    .registration-page { padding: 16px; }
+    .main-content, .registration-page { padding: 16px; }
     .content-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
     .content-header h1 { font-size: 1.3rem; }
-
     .stats-grid { grid-template-columns: 1fr; }
     .stat-card p { font-size: 1.5rem; }
-
     .table-container, .card { padding: 16px; }
     table { min-width: 480px; }
     #products-table { min-width: 720px; }
     #logs-table { min-width: 680px; }
     th, td { padding: 10px 12px; font-size: 0.9rem; }
-
     .form-max-width { max-width: 100%; }
     .form-group input, .form-group select { font-size: 16px; padding: 12px; }
     .btn { min-height: 44px; }
     .modal-actions { flex-direction: column-reverse; }
     .modal-actions .btn { width: 100%; text-align: center; }
+    .weekly-controls { flex-direction: column; align-items: stretch; }
+    .weekly-controls .form-group { min-width: 0; width: 100%; }
+    .weekly-controls .btn { width: 100%; text-align: center; }
 }
 
 @media (max-width: 480px) {
     .main-content, .registration-page { padding: 12px; }
     .content-header .btn { width: 100%; text-align: center; }
     .logo-placeholder h2 { font-size: 1.1rem; }
-<<<<<<< HEAD
 }
-
-/* ================= REKAP & EKSPOR LOG MINGGUAN ================= */
-.weekly-export-card { margin-bottom: 24px; }
-.weekly-help { color: #6b7280; font-size: .9rem; margin-top: 8px; }
-.weekly-controls { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
-.weekly-controls .form-group { margin-bottom: 0; min-width: 230px; }
-.weekly-controls .btn { min-height: 42px; }
-.weekly-summary { margin-top: 16px; padding: 14px; background: #f5f3ff; border: 1px solid var(--border-color); border-radius: 8px; line-height: 1.8; }
-@media (max-width: 768px) {
-    .weekly-controls { flex-direction: column; align-items: stretch; }
-    .weekly-controls .form-group { min-width: 0; width: 100%; }
-    .weekly-controls .btn { width: 100%; text-align: center; }
-}
-=======
-}
->>>>>>> 6bcfe54dbced2443d2158062bcee8efa4dbe3311
