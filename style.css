@@ -425,4 +425,21 @@ th {
     .main-content, .registration-page { padding: 12px; }
     .content-header .btn { width: 100%; text-align: center; }
     .logo-placeholder h2 { font-size: 1.1rem; }
+<<<<<<< HEAD
 }
+
+/* ================= REKAP & EKSPOR LOG MINGGUAN ================= */
+.weekly-export-card { margin-bottom: 24px; }
+.weekly-help { color: #6b7280; font-size: .9rem; margin-top: 8px; }
+.weekly-controls { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+.weekly-controls .form-group { margin-bottom: 0; min-width: 230px; }
+.weekly-controls .btn { min-height: 42px; }
+.weekly-summary { margin-top: 16px; padding: 14px; background: #f5f3ff; border: 1px solid var(--border-color); border-radius: 8px; line-height: 1.8; }
+@media (max-width: 768px) {
+    .weekly-controls { flex-direction: column; align-items: stretch; }
+    .weekly-controls .form-group { min-width: 0; width: 100%; }
+    .weekly-controls .btn { width: 100%; text-align: center; }
+}
+=======
+}
+>>>>>>> 6bcfe54dbced2443d2158062bcee8efa4dbe3311

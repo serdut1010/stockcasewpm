@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (document.getElementById("dashboard-container")) {
         initDashboardNavigation();
         initMutationForm();
+        initWeeklyExport();
         await loadData();
         updateDashboardUI();
     }
@@ -218,4 +219,81 @@ function initMutationForm() {
         updateDashboardUI();
         alert(`Pencatatan ${actType === "in" ? "Barang Masuk" : "Barang Keluar"} berhasil diproses!`);
     });
+}
+
+
+// Rekap mingguan (periode Senin–Minggu) dan ekspor CSV yang kompatibel Excel.
+function getWeekBounds(dateValue) {
+    const chosen = dateValue ? new Date(`${dateValue}T00:00:00`) : new Date();
+    const monday = new Date(chosen);
+    const day = (monday.getDay() + 6) % 7; // Senin = 0
+    monday.setDate(monday.getDate() - day);
+    monday.setHours(0, 0, 0, 0);
+    const sundayEnd = new Date(monday);
+    sundayEnd.setDate(sundayEnd.getDate() + 7); // batas eksklusif
+    return { start: monday, end: sundayEnd };
+}
+
+function getWeeklyLogs(dateValue) {
+    const { start, end } = getWeekBounds(dateValue);
+    return mutationLogs.filter(log => {
+        const stamp = new Date(log.created_at);
+        return stamp >= start && stamp < end;
+    }).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+}
+
+function renderWeeklySummary(dateValue) {
+    const summary = document.getElementById("weekly-summary");
+    if (!summary) return;
+    const { start, end } = getWeekBounds(dateValue);
+    const logs = getWeeklyLogs(dateValue);
+    const incoming = logs.filter(l => l.type === "Barang Masuk").reduce((sum, l) => sum + Number(l.qty || 0), 0);
+    const outgoing = logs.filter(l => l.type === "Barang Keluar").reduce((sum, l) => sum + Number(l.qty || 0), 0);
+    const registrations = logs.filter(l => l.type === "Registrasi Baru").length;
+    const fmtDate = d => d.toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" });
+    summary.innerHTML = `<strong>Periode:</strong> ${fmtDate(start)} – ${fmtDate(new Date(end.getTime()-1))}<br>
+        <strong>${logs.length} transaksi</strong> · 📥 Masuk: ${incoming} unit · 📤 Keluar: ${outgoing} unit · ✨ Registrasi: ${registrations}`;
+}
+
+function initWeeklyExport() {
+    const dateInput = document.getElementById("weekly-date");
+    const exportButton = document.getElementById("btn-export-week");
+    if (!dateInput || !exportButton) return;
+    const today = new Date();
+    const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    dateInput.value = localDate;
+    renderWeeklySummary(dateInput.value);
+    dateInput.addEventListener("change", () => renderWeeklySummary(dateInput.value));
+    exportButton.addEventListener("click", () => exportWeeklyCSV(dateInput.value));
+}
+
+function csvCell(value) {
+    return `"${String(value ?? "").replace(/"/g, '""')}"`;
+}
+
+function exportWeeklyCSV(dateValue) {
+    const logs = getWeeklyLogs(dateValue);
+    const { start, end } = getWeekBounds(dateValue);
+    if (!logs.length) {
+        alert("Tidak ada aktivitas log pada minggu yang dipilih.");
+        return;
+    }
+    const rows = [
+        ["Catatan Aktivitas Inventori Mingguan"],
+        ["Periode", start.toLocaleDateString("id-ID"), new Date(end.getTime()-1).toLocaleDateString("id-ID")],
+        [],
+        ["Waktu Transaksi", "SKU", "Nama Produk", "Aktivitas", "Jumlah (Unit)", "Sisa Stok (Unit)"],
+        ...logs.map(log => [formatWaktu(log.created_at), log.sku, log.name, log.type, log.qty, log.current_stock])
+    ];
+    const csv = "\uFEFF" + rows.map(row => row.map(csvCell).join(",")).join("\r\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const startText = start.toISOString().slice(0, 10);
+    link.href = url;
+    link.download = `catatan-inventori-mingguan-${startText}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
 }
