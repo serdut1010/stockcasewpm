@@ -123,6 +123,18 @@
                 <header class="content-header">
                     <h1>Jurnal Kronologi Aktivitas</h1>
                 </header>
+                <div class="card shadow-sm weekly-export-card">
+                    <h3>🗓️ Ekspor Catatan Mingguan</h3>
+                    <p class="weekly-help">Pilih tanggal dalam minggu yang ingin direkap. Periode otomatis Senin–Minggu.</p>
+                    <div class="weekly-controls">
+                        <div class="form-group">
+                            <label for="weekly-date">Tanggal acuan minggu</label>
+                            <input type="date" id="weekly-date">
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btn-export-week">⬇️ Ekspor Catatan Mingguan (CSV)</button>
+                    </div>
+                    <div id="weekly-summary" class="weekly-summary">Pilih tanggal untuk melihat ringkasan minggu.</div>
+                </div>
                 <div class="table-container shadow-sm">
                     <h3>📋 Rekam Jejak Arus Barang</h3>
                     <table id="logs-table">
