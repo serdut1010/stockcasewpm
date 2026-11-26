@@ -425,6 +425,7 @@ th {
     .main-content, .registration-page { padding: 12px; }
     .content-header .btn { width: 100%; text-align: center; }
     .logo-placeholder h2 { font-size: 1.1rem; }
+<<<<<<< HEAD
 }
 
 /* ================= REKAP & EKSPOR LOG MINGGUAN ================= */
@@ -439,3 +440,6 @@ th {
     .weekly-controls .form-group { min-width: 0; width: 100%; }
     .weekly-controls .btn { width: 100%; text-align: center; }
 }
+=======
+}
+>>>>>>> 6bcfe54dbced2443d2158062bcee8efa4dbe3311
